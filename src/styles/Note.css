@@ -1,0 +1,29 @@
+.Note {
+    @apply p-10 relative flex flex-col gap-8 hover:shadow-lg
+    transition duration-100;
+}
+
+.NoteContent {
+    @apply text-lg;
+}
+
+.NoteId {
+    @apply absolute top-3 right-3;
+}
+
+.NoteDate {
+    @apply text-xs italic;
+}
+
+.NoteActions {
+    @apply self-end flex gap-2 items-center;
+}
+
+
+.NoteUpdate {
+    @apply btn-primary btn-sm;
+}
+
+.NoteDelete {
+    @apply btn-error btn-sm;
+}

@@ -1,10 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 @import "tailwindcss";
-@plugin "daisyui" {
-  
+@plugin "daisyui";
+
+@import "./styles/General.css";
+@import "./styles/Note.css";
+
+
+body {
+    @apply min-h-screen w-full;
 }
 
-
 .AddBtn {
-    @apply btn btn-accent;
+    @apply btn-accent self-end btn-sm;
+}
+
+.OpenBtn {
+    @apply btn btn-soft btn-accent btn-sm absolute right-0;
+}
+
+.ModalContainer {
+    @apply fixed inset-0 bg-black/70 flex items-center justify-center z-70;
 }

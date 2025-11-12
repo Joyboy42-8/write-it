@@ -1,0 +1,7 @@
+.Btn {
+    @apply btn;
+}
+
+.BtnSoft {
+    @apply btn btn-soft;
+}

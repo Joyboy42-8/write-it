@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Plus } from 'lucide-react';
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+import Note from './components/Note';
+import { supabase } from "../supabaseClient";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading]= useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const getNotes = async () => {
+    setLoading(true)
+    const { data, error } = await supabase.from('notes').select('*');
+    if (error) {
+      toast.error(error);
+    } else {
+      setNotes(data);
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getNotes();
+  }, []);
+
+  useEffect(() => {
+    if (loading) {
+      const id = toast.loading('Chargement des notes...')
+      return () => toast.dismiss(id)
+    }
+  }, [loading]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main>
+      <section>
+        {
+          notes.length == 0 ?
+          <ul>
+            {notes.map(note => <Note key={note.id} note={note} />)}
+          </ul> :
+          <Any message="Any Notes" />
+        }
+      </section>
+      <button className='AddBtn'>
+        <Plus />
+      </button>
+    </main>
   )
 }
 
-export default App
+function Any({ message }) {
+  return <p>{message}</p>
+}

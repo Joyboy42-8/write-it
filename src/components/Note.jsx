@@ -8,7 +8,7 @@ export default function Note({ note, onDelete, onUpdate }) {
     return(
         <li className="Note" style={{
             background: note.color
-        }}>
+        }} title={note.user_id}>
             <span className="NoteId">{note.id}</span>
             <div>
                 <p className="NoteContent">{note.content}</p>   

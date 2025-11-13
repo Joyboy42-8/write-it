@@ -14,10 +14,26 @@ body {
     @apply btn-accent self-end btn-sm;
 }
 
+.NavActions {
+    @apply absolute right-0 flex gap-5 items-center;
+}
+
 .OpenBtn {
-    @apply btn btn-soft btn-accent btn-sm absolute right-0;
+    @apply btn btn-soft btn-accent btn-sm ;
+}
+
+.LogoutBtn {
+    @apply btn btn-soft btn-error btn-sm ;
 }
 
 .ModalContainer {
     @apply fixed inset-0 bg-black/70 flex items-center justify-center z-70;
+}
+
+.Auth {
+    @apply flex flex-col gap-5 items-center justify-center min-h-screen;
+}
+
+.AuthForm {
+    @apply w-xl;
 }
